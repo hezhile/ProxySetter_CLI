@@ -6,17 +6,17 @@ import sys
 import json
 import os
 
-print ("代理服务器设置助手 2.2 Build20140714")
+print ("ProxySetter CLI V2.3 Build20160705")
 print ("")
-print("注意：修改代理设置前，请先关闭Internet Explorer！")
+print("Attention: please shutdown Internet Explorer first.")
 print ("")
-print ("当前设置")
+print ("Current settings")
 handle = winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\Microsoft\Windows\CurrentVersion\Internet Settings")
 current_proxy_server = winreg.QueryValueEx(handle, "ProxyServer")
 proxy_server_status = winreg.QueryValueEx(handle, "ProxyEnable")
-status=('否','是')
-print ("代理服务器地址和端口：",current_proxy_server[0])
-print ("启用状态：",status[proxy_server_status[0]])
+status=('No','YEs')
+print ("Proxy server: ",current_proxy_server[0])
+print ("enabled: ",status[proxy_server_status[0]])
 print ("")
 
 def set_proxy(addr,port,bit):
@@ -30,27 +30,27 @@ def mod_menu(menu_content):
     menu_entry = sorted(menu_content.keys())
     for i in menu_entry:
         print (i+'--'+menu_content[i][0])
-    print ('x--退出')
+    print ('x--Exit')
     print ('')
     try:
-        choice = input("请输入: ")
+        choice = input("Enter: ")
     except:
         choice = 'wrong'
     if choice in menu_entry:
         set_proxy(menu_content[choice][1],menu_content[choice][2],menu_content[choice][3])
-        print ('done! 再见～')
+        print ('done! Bye')
     else:
-        print ("再见～")
+        print ("Good Bye")
         sys.exit()
 
 file_target = 'config.txt'
 
 def file_test():
     if not(file_target in os.listdir()):
-        print ("找不到配置文件，使用默认配置，再见～")
+        print ("configuration file no found, load the default settings, bye.")
         set_proxy('172.16.217.240', '3128', 1)
         file_handle=open(file_target,'w')
-        default_proxy={"1": ["内网代理", "172.16.216.240", "3128", 1]}
+        default_proxy={"1": ["HTTP Proxy", "172.16.216.240", "3128", 1]}
         json.dump(default_proxy,file_handle)
         file_handle.close()
         sys.exit()
