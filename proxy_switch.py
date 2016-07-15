@@ -6,16 +6,18 @@ import sys
 import json
 import os
 
-print ("ProxySetter CLI V2.3 Build20160705")
+print ("ProxySetter CLI V2.3 Build20160715")
 print ("")
 print("Attention: please shutdown Internet Explorer first.")
 print ("")
-print ("Current settings")
+print ("==Current settings==")
 handle = winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\Microsoft\Windows\CurrentVersion\Internet Settings")
-current_proxy_server = winreg.QueryValueEx(handle, "ProxyServer")
 proxy_server_status = winreg.QueryValueEx(handle, "ProxyEnable")
+if proxy_server_status[0]:
+    current_proxy_server = winreg.QueryValueEx(handle, "ProxyServer")
+    print ("Proxy server: ",current_proxy_server[0])
 status=('No','YEs')
-print ("Proxy server: ",current_proxy_server[0])
+
 print ("enabled: ",status[proxy_server_status[0]])
 print ("")
 
@@ -29,8 +31,8 @@ def mod_menu(menu_content):
     menu_length = len(menu_content)
     menu_entry = sorted(menu_content.keys())
     for i in menu_entry:
-        print (i+'--'+menu_content[i][0])
-    print ('x--Exit')
+        print (i+' -- '+menu_content[i][0])
+    print ('x -- Exit')
     print ('')
     try:
         choice = input("Enter: ")
