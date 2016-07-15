@@ -1,5 +1,2 @@
 # ProxySetter_CLI
-Quickly set the system-wide proxy server of Windows.
-
-##TODO
-move to Issues.
+An user-defined command-line utility for toggling the system proxy server of Windows.
