@@ -8,7 +8,7 @@ import os
 
 print ("ProxySetter CLI V2.3 Build20160715")
 print ("")
-print("Attention: please shutdown Internet Explorer first.")
+print("Attention: Please close Internet Explorer first.")
 print ("")
 print ("==Current settings==")
 handle = winreg.OpenKey(winreg.HKEY_CURRENT_USER,"Software\Microsoft\Windows\CurrentVersion\Internet Settings")
