@@ -1,2 +1,2 @@
 # ProxySetter_CLI
-A command-line utility for setting the system proxy server of Windows.
+A command-line utility for setting the Windows system proxy.
