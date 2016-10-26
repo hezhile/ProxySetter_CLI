@@ -40,9 +40,9 @@ def mod_menu(menu_content):
         choice = 'wrong'
     if choice in menu_entry:
         set_proxy(menu_content[choice][1],menu_content[choice][2],menu_content[choice][3])
-        print ('done! Bye')
+        print ('Done! Bye')
     else:
-        print ("Good Bye")
+        print ("Nothing changed. Bye")
         sys.exit()
 
 file_target = 'config.txt'
@@ -51,17 +51,17 @@ def file_test():
     if not(file_target in os.listdir()):
         print ("configuration file no found, load the default settings, bye.")
         set_proxy('172.16.217.240', '3128', 1)
-        file_handle=open(file_target,'w')
+        file_handler=open(file_target,'w')
         default_proxy={"1": ["HTTP Proxy", "172.16.216.240", "3128", 1]}
-        json.dump(default_proxy,file_handle)
-        file_handle.close()
+        json.dump(default_proxy,file_handler)
+        file_handler.close()
         sys.exit()
     return
 
 def read_file(target):
-    file_handle=open(target,'r')
-    config_str=json.load(file_handle)
-    file_handle.close()
+    file_handler=open(target,'r')
+    config_str=json.load(file_handler)
+    file_handler.close()
     return config_str
 
 file_test()
